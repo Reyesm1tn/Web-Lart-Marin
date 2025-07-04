@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lart Marín - Fotógrafo de Bodas</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sloop Script Pro', serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d4af37;
+
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .nav-links a.active {
+            color: #d4af37;
+            border-bottom: 2px solid #d4af37;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url("images/LAR00123.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="camera" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="rgba(212,175,55,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23camera)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #d4af37, #f4e784);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #d4af37, #f4e784);
+            color: #1a1a1a;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #ffffff;
+            font-family: 'Sloop Script Pro', serif;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #d4af37, #f4e784);
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('images/LAR00381-2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.34));
+            z-index: 1;
+        }
+
+        .placeholder-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('images/IMG_0288.PNG');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+
+            @keyframes fadeInUp {
+                0% {
+                    transform: translateY(20px);
+                    opacity: 0;
+                }
+
+                100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+        }
+
+        /* Services Section */
+        .services {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('images/IMG_0190.JPG');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            /* Soporte para Safari */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: linear-gradient(rgba(250, 250, 250, 0.6), rgba(255, 255, 255, 0.4)), url('images/IMG_0191.jpg');
+            background-size: cover;
+            background-position: down;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            position: relative;
+            overflow: hidden;
+
+        }
+
+
+        .pricing .section-title {
+            color: rgb(62, 62, 62);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(145deg, #2d2d2d, #1f1f1f);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            position: relative;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            border-color: #d4af37;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'La más vendida';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d4af37;
+            color: #1a1a1a;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .package-name {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .package-price {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .package-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #d4af37;
+        }
+
+        .package-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('images/IMG_0194.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: rgb(35, 35, 35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-item {
+            background: #f8f8f8;
+            color: inherit;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: #d4af37;
+            color: white;
+            transform: translateX(10px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            color: #d4af37;
+            width: 30px;
+        }
+
+        .contact-item:hover i {
+            color: white;
+        }
+
+        .faq {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #d4af37;
+            padding-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            color: #d4af37;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-answer {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: #d4af37;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            color: #f4e784;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Lart Marín</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#precios">Precios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Lart Marín</h1>
+            <p class="subtitle">¿SOY TU FOTÓGRAFO DE BODAS?</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.8;">
+                Capturo momentos genuinos y emociones auténticas para crear recuerdos que durarán para siempre
+            </p>
+            <a href="#contacto" class="cta-button">¡Contáctame Ahora!</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section" id="sobre-mi">
+        <div class="container">
+            <h2 class="section-title">¿Quién Soy?</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Con diez años de experiencia haciendo que el momento quede captado para siempre, soy Lart,
+                        artista y fotógrafo mexicano de bodas que siempre busca captar esas emociones y momentos de por
+                        vida.</p>
+
+                    <p>La fotografía es mi forma de entender la vida y conectarme con ella, haciendo que una boda se
+                        vuelva inolvidable captándola mediante las fotos. Es más que una profesión; es un medio para
+                        contar historias auténticas, íntimas e inesperadas.</p>
+
+                    <p>Soy buen observador de la vida y doy todo de mí por conseguir fotografías con una belleza
+                        atemporal, escucho a mi instinto para sentir con el corazón cuando debo capturar cada momento.
+                    </p>
+                </div>
+                <div class="about-image">
+                    <div class="placeholder-image">
+                    </div>
+                </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section" id="servicios">
+        <div class="container">
+            <h2 class="section-title">Mis Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Reuniones Personalizadas</h3>
+                    <p>Cada pareja es única, por lo tanto cada boda tiene su magia. Dedico tiempo con cada pareja antes
+                        de las sesiones y la boda, para ayudarles con recomendaciones importantes y oportunas.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Día de la Boda</h3>
+                    <p>No solo es documentar un evento, es capturar un pedazo de la historia de dos almas. Mi misión es
+                        narrar su día de manera que revivan sentimientos, aromas, sonidos y momentos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3>Slideshow</h3>
+                    <p>Una experiencia emocional que revive su gran día con una selección de imágenes cuidadosamente
+                        elegidas y musicalizadas. Podrán disfrutar una y otra vez, observando con el corazón.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing section" id="precios">
+        <div class="container">
+            <h2 class="section-title">Paquetes de Fotografía</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="package-name">Colección C</div>
+                    <div class="package-price">$28,000 MXN</div>
+                    <p style="margin-bottom: 2rem; color: #d4af37;">(Para empezar)</p>
+                    <ul class="package-features">
+                        <li>8 Horas de cobertura fotográfica</li>
+                        <li>Galería online 1 mes activa</li>
+                        <li>Descarga en resolución alta y web</li>
+                        <li>Entrega en 10 días hábiles</li>
+                    </ul>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="package-name">Colección B</div>
+                    <div class="package-price">$43,000 MXN</div>
+                    <ul class="package-features">
+                        <li>10 Horas de cobertura fotográfica</li>
+                        <li>Sesión casual en pareja</li>
+                        <li>Galería online 6 meses activa</li>
+                        <li>Álbum fotográfico</li>
+                        <li>Slideshow fotográfico</li>
+                        <li>Video artístico</li>
+                        <li>2 reels en video</li>
+                        <li>USB para tus fotos</li>
+                    </ul>
+                </div>
+                <div class="pricing-card">
+                    <div class="package-name">Colección A</div>
+                    <div class="package-price">$72,000 MXN</div>
+                    <p style="margin-bottom: 2rem; color: #d4af37;">(Lo más TOP)</p>
+                    <ul class="package-features">
+                        <li>12 Horas de cobertura fotográfica</li>
+                        <li>2 sesiones casuales (Pre y Post Boda)</li>
+                        <li>Galería online 1 año activa</li>
+                        <li>Álbum fotográfico + Estuche</li>
+                        <li>Slideshow fotográfico</li>
+                        <li>10 Fotografías Fine Art 8x10</li>
+                        <li>1 Fotografía enmarcada con cristal</li>
+                        <li>Video artístico + 2 Reels</li>
+                        <li>Toma con dron</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem; color: #585858;">
+                <p>Fotógrafo Extra: $8,000 MXN*</p>
+                <p>*El precio no incluye IVA en caso de requerir factura</p>
+                <p>*Los precios indicados no incluyen viáticos</p>
+                <p><strong style="color: #000000;">Fotógrafo Extra:</strong> $8,000 MXN*</p>
+
+            </div>
+
+        </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctame</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3 style="margin-bottom: 2rem; color: #1a1a1a;">¡Conversemos sobre tu boda!</h3>
+
+                    <a href="https://wa.me/529611880878" target="_blank" class="contact-item"
+                        style="text-decoration: none;">
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <strong>WhatsApp</strong><br>
+                            +52 961 188 08 78
+                        </div>
+                    </a>
+
+                    <a href="mailto:lartmarin@gmail.com" class="contact-item" style="text-decoration: none;">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Correo</strong><br>
+                            lartmarin@gmail.com
+                        </div>
+                    </a>
+
+                    <a href="https://www.instagram.com/lart_marin_" target="_blank" class="contact-item"
+                        style="text-decoration: none;">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <strong>Instagram</strong><br>
+                            @lart_marin_
+                        </div>
+                    </a>
+
+                </div>
+                <div class="faq">
+                    <h3 style="margin-bottom: 2rem; color: #1a1a1a;">Preguntas Frecuentes</h3>
+                    <div class="faq-item">
+                        <div class="faq-question">¿Cómo reservo mi fecha?</div>
+                        <div class="faq-answer">Para asegurar su fecha, se requiere un pago inicial del 30% del costo
+                            total del paquete contratado.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">¿En cuánto tiempo entregas las fotografías?</div>
+                        <div class="faq-answer">Entrego en 10 días hábiles, lo que me hace de los más rápidos del
+                            mercado de la fotografía de bodas.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">¿Cuándo es la sesión Casual?</div>
+                        <div class="faq-answer">La sesión se puede agendar el día previo o hasta 1 semana antes del día
+                            de la boda.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">¿Cómo son los pagos posteriores?</div>
+                        <div class="faq-answer">El pago del saldo puede ser en abonos mensuales o quincenales, pero debe
+                            estar cubierto mínimo un mes antes del evento.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <div class="social-links">
+                <a href="https://www.instagram.com/lart_marin_" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/529611880878" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:lartmarin@gmail.com">
+                    <i class="fas fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+        <p style="margin-top: 1rem; color: #666;">Fotógrafo de Bodas en México</p>
+        <p>&copy; 2025 Lart Marín - Fotógrafo de Bodas. Todos los derechos reservados.</p>
+        <p style="margin-top: 1rem; color: #666;">Capturo momentos que duran para siempre</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function () {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+
+        // Animate cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.service-card, .pricing-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+
+</html>
